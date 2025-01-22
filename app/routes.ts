@@ -19,5 +19,6 @@ export default [
   ...prefix("practice", [
     index("./practice/home.tsx"),
     route("utility-types", "./practice/utility-types.tsx"),
+    route("deep-merge", "./practice/deep-merge.tsx"),
   ]),
 ];
