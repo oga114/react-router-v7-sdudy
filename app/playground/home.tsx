@@ -2,11 +2,16 @@
 
 export default function Playground() {
 
-
-  function greet(name: string): string {
-    return 'Hello, ' + name;
+  interface Task {
+    title: string;
+    description: string;
   }
-  console.log(greet('John'));
+
+  const updateTask = (task: Partial<Task>) => {
+    console.log(task);
+  };
+
+  updateTask({ title: "New Title" });
 
   return (
     <>

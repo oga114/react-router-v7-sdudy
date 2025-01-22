@@ -8,7 +8,8 @@ export default function Layout() {
   return (
     <>
       <header className="bg-gray-800 text-white p-4">
-        Layoutです。
+
+        <p>フォームはクライアントサイドのみで動作するダミーです。</p>
       </header>
       <div className="mt-4">
         {showLogin ? <Login /> : <Register />}

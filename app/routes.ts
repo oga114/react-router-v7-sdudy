@@ -16,4 +16,8 @@ export default [
   ...prefix("playground", [
     index("./playground/home.tsx"),
   ]),
+  ...prefix("practice", [
+    index("./practice/home.tsx"),
+    route("utility-types", "./practice/utility-types.tsx"),
+  ]),
 ];
