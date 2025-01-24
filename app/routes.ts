@@ -21,5 +21,6 @@ export default [
     route("utility-types", "./practice/utility-types.tsx"),
     route("deep-merge", "./practice/deep-merge.tsx"),
     route("mapped-types", "./practice/mapped-types.tsx"),
+    route("keyof", "./practice/keyof.tsx"),
   ]),
 ];
