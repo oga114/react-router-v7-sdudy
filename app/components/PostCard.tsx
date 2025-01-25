@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { fetchPosts } from "../api";
 
+import type { Post } from "../types/posts";
+
 interface PostCardProps {
-  post: any;
+  post: Post;
 }
 
 export default function PostCard({ post }: PostCardProps) {

@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchPosts } from "../api";
-
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
+import type { Post } from "../types/posts";
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
