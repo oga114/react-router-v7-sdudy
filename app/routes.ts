@@ -23,5 +23,6 @@ export default [
     route("mapped-types", "./practice/mapped-types.tsx"),
     route("keyof", "./practice/keyof.tsx"),
     route("deep-copy", "./practice/deep-copy.tsx"),
+    route("custom-hook", "./practice/custom-hook.tsx"),
   ]),
 ];
