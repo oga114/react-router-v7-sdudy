@@ -1,6 +1,9 @@
 import { Link } from "react-router";
 
+
 export default function Home() {
+
+
   return (
     <>
       <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
