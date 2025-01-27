@@ -35,6 +35,13 @@ export default function UtilityTypes() {
 
   // config.apiUrl = "new_url";  // これはエラーになる
 
+  // NonNullable<T>はTからnullとundefinedを除外する
+  const values: (string | null | undefined)[] = ["A", null, "B", undefined];
+  const filteredValues: string[] = values.filter(Boolean) as NonNullable<typeof values[number]>[];
+
+  console.log(filteredValues);  // ["A", "B"]
+
+
   return (
     <>
       ここはUTILITY-TYPES画面です。
