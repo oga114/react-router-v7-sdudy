@@ -24,5 +24,6 @@ export default [
     route("keyof", "./practice/keyof.tsx"),
     route("deep-copy", "./practice/deep-copy.tsx"),
     route("custom-hook", "./practice/custom-hook.tsx"),
+    route("immutability", "./practice/immutability.tsx"),
   ]),
 ];
