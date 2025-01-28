@@ -26,4 +26,8 @@ export default [
     route("custom-hook", "./practice/custom-hook.tsx"),
     route("immutability", "./practice/immutability.tsx"),
   ]),
+  ...prefix("verification", [
+    index("./verification/home.tsx"),
+    route("dnd-kit", "./verification/dnd-kit.tsx"),
+  ]),
 ];
