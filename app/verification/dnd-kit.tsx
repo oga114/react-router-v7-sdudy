@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { DndContext, useDraggable, useDroppable } from '@dnd-kit/core';
+import React, { useState, useEffect } from 'react';
+import { DndContext, closestCenter } from '@dnd-kit/core';
+import { arrayMove, SortableContext, useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import type { DragEndEvent } from '@dnd-kit/core';
 
 export default function DndKit() {
@@ -14,55 +16,43 @@ export default function DndKit() {
   }
 
   function App() {
+    const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
+
     const handleDragEnd = (event: DragEndEvent) => {
       const { active, over } = event;
-      if (over) {
-        console.log(`Moved ${active.id} to ${over.id}`);
+      if (over && active.id !== over.id) {
+        const oldIndex = items.indexOf(active.id as string);
+        const newIndex = items.indexOf(over.id as string);
+        setItems(arrayMove(items, oldIndex, newIndex));
       }
     };
 
     return (
-      <DndContext onDragEnd={handleDragEnd}>
-        <Draggable id="draggable-item">Drag me!</Draggable>
-        <Droppable id="droppable-area">Drop here!</Droppable>
+      <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <SortableContext items={items}>
+          {items.map((item) => (
+            <SortableItem key={item} id={item} />
+          ))}
+        </SortableContext>
       </DndContext>
     );
   }
 
-  function Draggable({ id, children }: { id: string; children: React.ReactNode }) {
-    const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });
+  function SortableItem({ id }: { id: string }) {
+    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+    const style = {
+      transform: CSS.Transform.toString(transform),
+      transition,
+      padding: '8px',
+      margin: '4px 0',
+      backgroundColor: 'lightgreen',
+      border: '1px solid darkgreen',
+      cursor: 'grab',
+    };
 
     return (
-      <div
-        ref={setNodeRef}
-        {...listeners}
-        {...attributes}
-        style={{
-          padding: '8px',
-          backgroundColor: 'lightblue',
-          cursor: 'grab',
-          transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : undefined,
-          touchAction: 'none',
-        }}
-      >
-        {children}
-      </div>
-    );
-  }
-
-  function Droppable({ id, children }: { id: string; children: React.ReactNode }) {
-    const { setNodeRef } = useDroppable({ id });
-
-    return (
-      <div
-        ref={setNodeRef}
-        style={{
-          margin: '20px',
-          padding: '8px',
-          backgroundColor: 'lightgray',
-        }}
-      >
-        {children}
+      <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+        {id}
       </div>
     );
   }
